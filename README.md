@@ -1,4 +1,7 @@
-# react-widget-builder
+# react-widget-builder [![npm package][npm-badge]][npm]
+
+[npm-badge]: https://img.shields.io/npm/v/@knymbus/react-widget-builder.svg?style=flat-square
+[npm]: https://www.npmjs.org/package/@knymbus/react-widget-builder
 
 React widget builder is a small light weight UI component widget that is use to contain componants that can share data between the components outside of the default router.
 
