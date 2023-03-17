@@ -1,9 +1,9 @@
 import React, { createContext, ReactNode, useCallback, useContext, useEffect, useMemo, useState } from 'react'
 import { WidgetBuilder } from './Builder'
 import { WidgetHistory } from './WidgetHistory'
-import { IWidgetBuilderNavigate, IWidgetBuilderRoute } from './WidgetBuilder.interface'
+import { IWidgetBuilderNavigate, IWidgetBuilderRoute, WidgetBuilderContextInterface } from './WidgetBuilder.interface'
 
-export const WidgetBuilderContext = createContext<any>({
+export const WidgetBuilderContext = createContext<WidgetBuilderContextInterface>({
     nextView: (e: any) => {
         console.log(e)
     },
@@ -15,7 +15,7 @@ export const WidgetBuilderContext = createContext<any>({
         console.log('This is my default function: ', e)
     },
     params: {},
-    goback: () => {
+    goBack: () => {
         console.log('goback init')
     },
     fragmentHeader: '',
@@ -95,11 +95,12 @@ export default function WidgetBuilderProvider(props: any) {
     }, [nav])
 
     const goBack = () => {
-        // console.log('history: ', history)
+        console.log('history: ', history)
         // console.log('Widget history: ', widgetHistory.lastView)
 
+        console.log("Last View we visited: ", widgetHistory.lastView)
         if (widgetHistory.lastView !== undefined && widgetHistory.lastView !== null) {
-            nextView(widgetHistory.lastView.view?.window)
+            nextView(widgetHistory.lastView?.view?.window)
             setParams(widgetHistory.lastView?.params)
         } else {
             nextView(null)

@@ -1,11 +1,10 @@
-import { Box, IconButton, styled } from '@mui/material'
-import React, { useContext, useEffect } from 'react'
-import { IWidgetBuilderNavigate, IWidgetBuilderRoute } from './WidgetBuilder.interface'
-import WidgetBuilderProvider, { WidgetBuilderContext } from './WidgetBuilderContext'
-import ArrowBackIcon from '@mui/icons-material/ArrowBack'
 
-import { motion } from 'framer-motion'
-import useWidgetBuilderNavigation from './useWidgetBuilderNavigation'
+import React from 'react'
+import FragmentFrame from './FragmentFrame'
+import { IWidgetBuilderNavigate, IWidgetBuilderRoute } from './WidgetBuilder.interface'
+
+
+
 
 type WindowType = 'window' | 'fragment' | 'panel' | 'section'
 interface WidgetBuilderArgs {
@@ -77,102 +76,4 @@ export class WidgetBuilder {
             return null
         }
     }
-}
-
-export const WidgetBuilderOutlet = (props: { builder: WidgetBuilder; onNavigate?: IWidgetBuilderNavigate }) => {
-    const { builder, onNavigate } = props
-
-    return (
-        <WidgetBuilderProvider>
-            <Component builder={builder} onNavigate={onNavigate} />
-        </WidgetBuilderProvider>
-    )
-}
-
-interface IProps {
-    builder: WidgetBuilder
-    onNavigate?: IWidgetBuilderNavigate
-}
-
-const Component: React.FC<IProps> = ({ builder, onNavigate }) => {
-    const context = useContext(WidgetBuilderContext)
-    const { navigate } = useWidgetBuilderNavigation()
-    useEffect(() => {
-        context.Builder(builder)
-    }, [builder])
-
-    useEffect(() => {
-        // console.log('onNavigate object called', onNavigate)
-        if (onNavigate !== undefined) {
-            navigate(onNavigate)
-        }
-    }, [onNavigate])
-
-    return <>{context.view}</>
-}
-
-/**
- * Fragment Frame component Wrapper
- * @returns
- */
-
-const FragmentWrapper = styled(Box, { name: 'Fragment_Wrapper' })({
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    zIndex: '9999999999999999999999',
-    background: '#fff',
-    overflow: 'hidden'
-})
-
-const FragmentTitle = styled(Box, { name: 'Fragment_Header' })({
-    padding: '0 16px',
-    fontSize: '11pt',
-    display: 'flex',
-    alignItems: 'center'
-})
-
-const FragmentHeader = styled(Box, { name: 'Fragment_Header' })({
-    padding: '8px 16px',
-    display: 'flex',
-    flexDirection: 'row'
-})
-const FragmentBody = styled(Box, { name: 'Fragment_Body' })({
-    padding: '8px 16px',
-    height: 'calc(100vh - 60px)',
-    overflow: 'hidden',
-    overflowY: 'auto'
-})
-
-interface FragmentFrameIProps {
-    children: any
-}
-const FragmentFrame: React.FC<FragmentFrameIProps> = ({ children }) => {
-    const { navigateBack } = useWidgetBuilderNavigation()
-    const { fragmentHeader } = useContext(WidgetBuilderContext)
-
-    return (
-        <FragmentWrapper>
-            <motion.div
-                initial={{ opacity: 0, x: -1000 }}
-                animate={{
-                    x: 0,
-                    y: 0,
-                    scale: 1,
-                    rotate: 0,
-                    opacity: 1
-                }}
-            >
-                <FragmentHeader>
-                    <IconButton aria-label='edit' size='small' onClick={navigateBack}>
-                        <ArrowBackIcon fontSize='inherit' />
-                    </IconButton>
-                    <FragmentTitle>{fragmentHeader}</FragmentTitle>
-                </FragmentHeader>
-                <FragmentBody>{children}</FragmentBody>
-            </motion.div>
-        </FragmentWrapper>
-    )
 }

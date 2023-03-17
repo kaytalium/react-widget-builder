@@ -1,4 +1,5 @@
 import { ReactNode } from 'react'
+import { WidgetBuilder } from './Builder'
 
 export interface IWidgetBuilderRoute {
     /**
@@ -32,4 +33,25 @@ export interface IWidgetBuilderRoute {
 export interface IWidgetBuilderNavigate {
     path: string
     params?: any
+}
+
+export interface WidgetBuilderOutletIProps {
+    builder: WidgetBuilder
+    onNavigate?: IWidgetBuilderNavigate
+}
+
+
+export interface FragmentFrameIProps {
+    children: any
+}
+
+export interface WidgetBuilderContextInterface{
+    nextView: (e: any) => void,
+    view: ReactNode,
+    nextNav: (e: any) => void,
+    Builder: (e: any) => void,
+    goBack: () => void,
+    fragmentHeader: string | ReactNode,
+    params: any,
+    setFragmentHeader: (e: string | ReactNode) => void
 }
