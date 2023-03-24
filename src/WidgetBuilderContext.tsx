@@ -98,7 +98,7 @@ export default function WidgetBuilderProvider(props: any) {
         console.log('history: ', history)
         // console.log('Widget history: ', widgetHistory.lastView)
 
-        console.log("Last View we visited: ", widgetHistory.lastView)
+        console.log('Last View we visited: ', widgetHistory.lastView)
         if (widgetHistory.lastView !== undefined && widgetHistory.lastView !== null) {
             nextView(widgetHistory.lastView?.view?.window)
             setParams(widgetHistory.lastView?.params)

@@ -1,10 +1,6 @@
-
 import React from 'react'
 import FragmentFrame from './FragmentFrame'
 import { IWidgetBuilderNavigate, IWidgetBuilderRoute } from './WidgetBuilder.interface'
-
-
-
 
 type WindowType = 'window' | 'fragment' | 'panel' | 'section'
 interface WidgetBuilderArgs {

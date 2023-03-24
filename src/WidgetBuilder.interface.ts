@@ -40,18 +40,17 @@ export interface WidgetBuilderOutletIProps {
     onNavigate?: IWidgetBuilderNavigate
 }
 
-
 export interface FragmentFrameIProps {
     children: any
 }
 
-export interface WidgetBuilderContextInterface{
-    nextView: (e: any) => void,
-    view: ReactNode,
-    nextNav: (e: any) => void,
-    Builder: (e: any) => void,
-    goBack: () => void,
-    fragmentHeader: string | ReactNode,
-    params: any,
+export interface WidgetBuilderContextInterface {
+    nextView: (e: any) => void
+    view: ReactNode
+    nextNav: (e: any) => void
+    Builder: (e: any) => void
+    goBack: () => void
+    fragmentHeader: string | ReactNode
+    params: any
     setFragmentHeader: (e: string | ReactNode) => void
 }

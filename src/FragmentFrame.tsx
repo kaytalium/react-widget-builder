@@ -1,11 +1,10 @@
 import { Box, IconButton, styled } from '@mui/material'
-import { motion } from "framer-motion"
-import React, { useContext } from "react"
-import useWidgetBuilderNavigation from "./useWidgetBuilderNavigation"
-import { FragmentFrameIProps } from "./WidgetBuilder.interface"
+import { motion } from 'framer-motion'
+import React, { useContext } from 'react'
+import useWidgetBuilderNavigation from './useWidgetBuilderNavigation'
+import { FragmentFrameIProps } from './WidgetBuilder.interface'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack'
 import { WidgetBuilderContext } from './WidgetBuilderContext'
-
 
 /**
  * Fragment Frame component Wrapper
@@ -17,7 +16,7 @@ const FragmentWrapper = styled(Box, { name: 'Fragment_Wrapper' })({
     left: 0,
     right: 0,
     bottom: 0,
-    zIndex: '9999999999999999999999',
+    zIndex: '1000',
     background: '#fff',
     overflow: 'hidden'
 })
@@ -40,7 +39,6 @@ const FragmentBody = styled(Box, { name: 'Fragment_Body' })({
     overflow: 'hidden',
     overflowY: 'auto'
 })
-
 
 const FragmentFrame: React.FC<FragmentFrameIProps> = ({ children }) => {
     const { navigateBack } = useWidgetBuilderNavigation()

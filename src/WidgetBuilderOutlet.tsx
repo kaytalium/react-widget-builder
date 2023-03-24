@@ -1,6 +1,6 @@
-import React, { useContext, useEffect } from 'react';
-import useWidgetBuilderNavigation from './useWidgetBuilderNavigation';
-import { WidgetBuilderOutletIProps } from './WidgetBuilder.interface';
+import React, { useContext, useEffect } from 'react'
+import useWidgetBuilderNavigation from './useWidgetBuilderNavigation'
+import { WidgetBuilderOutletIProps } from './WidgetBuilder.interface'
 import WidgetBuilderProvider, { WidgetBuilderContext } from './WidgetBuilderContext'
 
 export const WidgetBuilderOutlet = (props: WidgetBuilderOutletIProps) => {
@@ -12,7 +12,6 @@ export const WidgetBuilderOutlet = (props: WidgetBuilderOutletIProps) => {
         </WidgetBuilderProvider>
     )
 }
-
 
 const Component: React.FC<WidgetBuilderOutletIProps> = ({ builder, onNavigate }) => {
     const context = useContext(WidgetBuilderContext)
