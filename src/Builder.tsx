@@ -7,17 +7,20 @@ interface WidgetBuilderArgs {
     name?: string
     routes: IWidgetBuilderRoute[]
     type?: WindowType
+    urlHash?: boolean
 }
 export class WidgetBuilder {
     private _routes: IWidgetBuilderRoute[] = []
     private _name: string | null
     private _type: WindowType = 'window'
+    private _urlHash: boolean = false
 
     constructor(args: WidgetBuilderArgs) {
         // console.log('new WidgetBuilder input: ', args)
         this._routes = args.routes
         this._name = args.name || null
         this._type = args.type || 'window'
+        this._urlHash = args.urlHash || false
 
         if (this._routes !== undefined) {
             /**
@@ -46,6 +49,10 @@ export class WidgetBuilder {
 
     get type() {
         return this._type
+    }
+
+    get urlHash(){
+        return this._urlHash
     }
 
     public activeDefaultView(): IWidgetBuilderRoute | null {

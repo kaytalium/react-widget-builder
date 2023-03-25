@@ -14,7 +14,8 @@
     "test": "jest --config jestconfig.json",
     "prepare": "npm run build",
     "prepublishOnly": "npm test && npm run prettier && npm run lint",
-    "publish:patch": "npm version patch && npm publish --access public"
+    "publish:patch": "npm version patch && npm publish --access public",
+    "publish:minor": "npm version minor && npm publish --access public"
   },
   "keywords": [],
   "author": "Ovel Heslop",
@@ -45,7 +46,8 @@
     "@emotion/styled": "^11.10.6",
     "@mui/icons-material": "^5.11.11",
     "@mui/material": "^5.11.12",
-    "framer-motion": "^10.2.3"
+    "framer-motion": "^10.2.3",
+    "react-router-dom": "^6.9.0"
   },
   "peerDependencies": {
     "react": ">=16"
