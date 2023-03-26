@@ -14,7 +14,7 @@ export class WidgetBuilder {
     private _routes: IWidgetBuilderRoute[] = []
     private _name: string | null
     private _type: WindowType = 'window'
-    private _urlHash: boolean = false
+    private _urlHash = false
 
     constructor(args: WidgetBuilderArgs) {
         // console.log('new WidgetBuilder input: ', args)
@@ -30,8 +30,12 @@ export class WidgetBuilder {
 
             if (this._type === 'fragment') {
                 this._routes = this._routes.map((route, index) => {
-                    let order = route.order ?? index
-                    route.window = <FragmentFrame key={v4()} order={order}>{route.window}</FragmentFrame>
+                    const order = route.order ?? index
+                    route.window = (
+                        <FragmentFrame key={v4()} order={order}>
+                            {route.window}
+                        </FragmentFrame>
+                    )
                     return route
                 })
             }
@@ -53,7 +57,7 @@ export class WidgetBuilder {
         return this._type
     }
 
-    get urlHash(){
+    get urlHash() {
         return this._urlHash
     }
 

@@ -10,13 +10,13 @@ import { WidgetBuilderContext } from './WidgetBuilderContext'
  * Fragment Frame component Wrapper
  * @returns
  */
-const FragmentWrapper = styled(Box, { name: 'Fragment_Wrapper' })<{order: number | undefined }>(({order})=>({
+const FragmentWrapper = styled(Box, { name: 'Fragment_Wrapper' })<{ order: number | undefined }>(({ order }) => ({
     position: 'absolute',
     top: 0,
     left: 0,
     right: 0,
     bottom: 0,
-    zIndex: order !== undefined ? (1000 + order) : '1000',
+    zIndex: order !== undefined ? 1000 + order : '1000',
     background: '#fff',
     overflow: 'hidden'
 }))
