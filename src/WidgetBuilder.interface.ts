@@ -28,6 +28,10 @@ export interface IWidgetBuilderRoute {
      * The Transition attributes indicate how the window should enter and exit the active window state
      */
     transition?: boolean
+    /**
+     * If using a fragment you can set the order of the fragment to show based your fragment flow
+     */
+    order?: number
 }
 
 export interface IWidgetBuilderNavigate {
@@ -42,6 +46,7 @@ export interface WidgetBuilderOutletIProps {
 
 export interface FragmentFrameIProps {
     children: any
+    order?: number
 }
 
 export interface WidgetBuilderContextInterface {

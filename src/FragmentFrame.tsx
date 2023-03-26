@@ -10,16 +10,16 @@ import { WidgetBuilderContext } from './WidgetBuilderContext'
  * Fragment Frame component Wrapper
  * @returns
  */
-const FragmentWrapper = styled(Box, { name: 'Fragment_Wrapper' })({
+const FragmentWrapper = styled(Box, { name: 'Fragment_Wrapper' })<{order: number | undefined }>(({order})=>({
     position: 'absolute',
     top: 0,
     left: 0,
     right: 0,
     bottom: 0,
-    zIndex: '1000',
+    zIndex: order !== undefined ? (1000 + order) : '1000',
     background: '#fff',
     overflow: 'hidden'
-})
+}))
 
 const FragmentTitle = styled(Box, { name: 'Fragment_Header' })({
     padding: '0 16px',
@@ -40,12 +40,12 @@ const FragmentBody = styled(Box, { name: 'Fragment_Body' })({
     overflowY: 'auto'
 })
 
-const FragmentFrame: React.FC<FragmentFrameIProps> = ({ children }) => {
+const FragmentFrame: React.FC<FragmentFrameIProps> = ({ children, order }) => {
     const { navigateBack } = useWidgetBuilderNavigation()
     const { fragmentHeader } = useContext(WidgetBuilderContext)
 
     return (
-        <FragmentWrapper>
+        <FragmentWrapper order={order}>
             <motion.div
                 initial={{ opacity: 0, x: -1000 }}
                 animate={{

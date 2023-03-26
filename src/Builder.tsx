@@ -1,4 +1,5 @@
 import React from 'react'
+import { v4 } from 'uuid'
 import FragmentFrame from './FragmentFrame'
 import { IWidgetBuilderNavigate, IWidgetBuilderRoute } from './WidgetBuilder.interface'
 
@@ -28,8 +29,9 @@ export class WidgetBuilder {
              */
 
             if (this._type === 'fragment') {
-                this._routes = this._routes.map((route) => {
-                    route.window = <FragmentFrame>{route.window}</FragmentFrame>
+                this._routes = this._routes.map((route, index) => {
+                    let order = route.order ?? index
+                    route.window = <FragmentFrame key={v4()} order={order}>{route.window}</FragmentFrame>
                     return route
                 })
             }

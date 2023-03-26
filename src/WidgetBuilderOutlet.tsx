@@ -1,5 +1,4 @@
-import React, { useContext, useEffect } from 'react'
-import { useLocation } from 'react-router-dom'
+import React, { ReactNode, useContext, useEffect, useState } from 'react'
 import useWidgetBuilderNavigation from './useWidgetBuilderNavigation'
 import { WidgetBuilderOutletIProps } from './WidgetBuilder.interface'
 import WidgetBuilderProvider, { WidgetBuilderContext } from './WidgetBuilderContext'
@@ -14,10 +13,12 @@ export const WidgetBuilderOutlet = (props: WidgetBuilderOutletIProps) => {
     )
 }
 
+
 const Component: React.FC<WidgetBuilderOutletIProps> = ({ builder, onNavigate }) => {
     const context = useContext(WidgetBuilderContext)
     const { navigate } = useWidgetBuilderNavigation()
-    const location = useLocation()
+    const [element, setElement] = useState<ReactNode[]>([])
+
 
     useEffect(() => {
         context.Builder(builder)
@@ -30,15 +31,28 @@ const Component: React.FC<WidgetBuilderOutletIProps> = ({ builder, onNavigate })
         }
     }, [onNavigate])
 
-    // using url Hash
-    useEffect(() => {
-        if(builder.urlHash){
-            let hash = location.hash
-            navigate({
-                path: hash
-            })
-        }
-    }, [location])
 
-    return <>{context.view}</>
+    useEffect(() => {
+        /**
+         * Here im saying that if the builder is building fragments then we show 
+         * fragments by the order in which they come 
+         */
+        if (builder.type === "fragment") {
+            setElement([...element.map(el => {
+                return el
+            }), context.view])
+        }
+
+
+        /**
+         * However if regular then we want to only show a singular view
+         */
+        if(builder.type === "window"){
+            setElement([context.view])
+        }
+    }, [context])
+
+    return <>{element.map(view => {
+        return view
+    })}</>
 }

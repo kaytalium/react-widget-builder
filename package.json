@@ -46,8 +46,9 @@
     "@emotion/styled": "^11.10.6",
     "@mui/icons-material": "^5.11.11",
     "@mui/material": "^5.11.12",
+    "@types/uuid": "^9.0.1",
     "framer-motion": "^10.2.3",
-    "react-router-dom": "^6.9.0"
+    "uuid": "^9.0.0"
   },
   "peerDependencies": {
     "react": ">=16"
