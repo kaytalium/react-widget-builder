@@ -1,10 +1,10 @@
 import { Box, IconButton, styled } from '@mui/material'
 import { motion } from 'framer-motion'
-import React, { useContext, useEffect } from 'react'
+import React from 'react'
 import useWidgetBuilderNavigation from '../useWidgetBuilderNavigation'
 import { FragmentFrameIProps } from '../WidgetBuilder.interface'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack'
-import { WidgetBuilderContext } from '../WidgetBuilderContext'
+
 
 /**
  * Fragment Frame component Wrapper
@@ -40,15 +40,11 @@ const FragmentBody = styled(Box, { name: 'Fragment_Body' })({
     overflowY: 'auto'
 })
 
-const FragmentFrame: React.FC<FragmentFrameIProps> = ({ children, order }) => {
+const FragmentFrame: React.FC<FragmentFrameIProps> = ({ children, order, header, isBackNav }) => {
     const { navigateBack } = useWidgetBuilderNavigation()
-    const { fragmentHeader } = useContext(WidgetBuilderContext)
 
-    useEffect(() => {
-        if (fragmentHeader !== null || fragmentHeader !== undefined) {
-            console.log('Fragment typeof >>>>>>', typeof fragmentHeader, ' >>>>>>>')
-        }
-    }, [fragmentHeader])
+
+
 
     return (
         <FragmentWrapper order={order}>
@@ -63,10 +59,13 @@ const FragmentFrame: React.FC<FragmentFrameIProps> = ({ children, order }) => {
                 }}
             >
                 <FragmentHeader>
-                    <IconButton aria-label='edit' size='small' onClick={navigateBack}>
-                        <ArrowBackIcon fontSize='inherit' />
-                    </IconButton>
-                    <FragmentTitle>{''}</FragmentTitle>
+                    {
+                        !isBackNav ? null : <IconButton aria-label='edit' size='small' onClick={navigateBack}>
+                            <ArrowBackIcon fontSize='inherit' />
+                        </IconButton>
+                    }
+
+                    <FragmentTitle>{header}</FragmentTitle>
                 </FragmentHeader>
                 <FragmentBody>{children}</FragmentBody>
             </motion.div>

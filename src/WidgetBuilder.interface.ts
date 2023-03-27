@@ -33,6 +33,10 @@ export interface IWidgetBuilderRoute {
      */
     order?: number
     /**
+     * Fragment header Options
+     */
+    fragmentHeaderOptions?: IFragmentHeaderOptions
+    /**
      * Private objects
      */
     _remove?: boolean
@@ -68,6 +72,7 @@ export interface WidgetBuilderArgs {
      * this option allow the user to use the hash from the current url
      */
     urlHash?: boolean
+
 }
 
 export interface IWidgetBuilderNavigate {
@@ -83,6 +88,8 @@ export interface WidgetBuilderOutletIProps {
 export interface FragmentFrameIProps {
     children: any
     order?: number
+    header?: string | ReactNode
+    isBackNav?: boolean
 }
 
 export interface WindowFrameIProps {
@@ -95,9 +102,7 @@ export interface WidgetBuilderContextInterface {
     nextNav: (e: any) => void
     Builder: (e: any) => void
     goBack: () => void
-    fragmentHeader: IFragmentHeader | string | ReactNode
     params: any
-    setFragmentHeader: (e: IFragmentHeader | string | ReactNode) => void
 }
 
 export interface IHistoryInterface {
@@ -105,7 +110,7 @@ export interface IHistoryInterface {
     params?: any
 }
 
-export interface IFragmentHeader {
-    title?: string | ReactNode
-    showBack?: boolean
+export interface IFragmentHeaderOptions {
+    header?: string | ReactNode
+    isBackNav?: boolean
 }

@@ -1,8 +1,7 @@
-import React, { createContext, ReactNode, useCallback, useContext, useEffect, useMemo, useState } from 'react'
+import React, { createContext, useCallback, useContext, useEffect, useMemo, useState } from 'react'
 import { WidgetBuilder } from './Builder'
 import { WidgetHistory } from './WidgetHistory'
 import {
-    IFragmentHeader,
     IWidgetBuilderNavigate,
     IWidgetBuilderRoute,
     WidgetBuilderContextInterface
@@ -22,10 +21,6 @@ export const WidgetBuilderContext = createContext<WidgetBuilderContextInterface>
     params: {},
     goBack: () => {
         console.log('goback init')
-    },
-    fragmentHeader: '',
-    setFragmentHeader: (e: IFragmentHeader | string | ReactNode) => {
-        console.log(e)
     }
 })
 
@@ -39,7 +34,7 @@ export default function WidgetBuilderProvider(props: any) {
     const [myBuilder, Builder] = useState<WidgetBuilder | null>(null)
     const [params, setParams] = useState()
     const { children } = props
-    const [fragmentHeader, setFragmentHeader] = useState<IFragmentHeader | string | ReactNode>('')
+    
 
     const widgetHistory = useMemo(() => new WidgetHistory(), [])
 
@@ -120,7 +115,7 @@ export default function WidgetBuilderProvider(props: any) {
 
     return (
         <WidgetBuilderContext.Provider
-            value={{ nextView, view, Builder, nextNav, params, goBack, fragmentHeader, setFragmentHeader }}
+            value={{ nextView, view, Builder, nextNav, params, goBack }}
         >
             {children}
         </WidgetBuilderContext.Provider>

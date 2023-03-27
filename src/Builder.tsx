@@ -27,7 +27,7 @@ export class WidgetBuilder {
                     const order = route.order ?? index
                     route._remove = false
                     route.window = (
-                        <FragmentFrame key={v4()} order={order}>
+                        <FragmentFrame key={v4()} order={order} {...route.fragmentHeaderOptions}>
                             {route.window}
                         </FragmentFrame>
                     )
