@@ -42,16 +42,30 @@ const Component: React.FC<WidgetBuilderOutletIProps> = ({ builder, onNavigate })
         if (builder.type === 'fragment') {
             console.log('Fragment to be removed from view: ', context.view)
             if (context.view !== null) {
-                setElement([
-                    ...element.map((el: IWidgetBuilderRoute) => {
-                        return el
-                    }),
-                    context.view
-                ])
-            }else{
+                const arr = element
+                if (context.view._remove) {
+                    const i = element.findIndex((e) => (e.path === context.view?.path))
+
+                    if (i > -1) {
+                        arr.splice(i, 0)
+                    }
+
+                    setElement([
+                        ...arr.map((el: IWidgetBuilderRoute) => {
+                            return el
+                        })
+                    ])
+                } else {
+                    setElement([
+                        ...arr.map((el: IWidgetBuilderRoute) => {
+                            return el
+                        }),
+                        context.view
+                    ])
+                }
+            } else {
                 setElement([])
             }
-            
         }
 
         /**

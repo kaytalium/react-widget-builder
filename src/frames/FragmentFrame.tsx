@@ -46,7 +46,7 @@ const FragmentFrame: React.FC<FragmentFrameIProps> = ({ children, order }) => {
 
     useEffect(() => {
         if (fragmentHeader === null || fragmentHeader === undefined) {
-            console.log("Fragment typeof >>>>>>", typeof fragmentHeader, " >>>>>>>")
+            console.log('Fragment typeof >>>>>>', typeof fragmentHeader, ' >>>>>>>')
         }
     }, [fragmentHeader])
 
