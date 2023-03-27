@@ -1,5 +1,5 @@
 import { Box, styled } from '@mui/material'
-import React, { ReactNode, useContext, useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import useWidgetBuilderNavigation from './useWidgetBuilderNavigation'
 import { IWidgetBuilderRoute, WidgetBuilderOutletIProps } from './WidgetBuilder.interface'
 import WidgetBuilderProvider, { WidgetBuilderContext } from './WidgetBuilderContext'
@@ -54,14 +54,14 @@ const Component: React.FC<WidgetBuilderOutletIProps> = ({ builder, onNavigate })
          * However if regular then we want to only show a singular view
          */
         if (builder.type === 'window') {
-            if(context.view !== null) setElement([context.view])
+            if (context.view !== null) setElement([context.view])
         }
     }, [context.view])
 
     return (
         <Wrapper name={builder.name}>
             {element.map((view) => {
-                return !view._remove ? view.window : null                
+                return !view._remove ? view.window : null
             })}
         </Wrapper>
     )

@@ -100,10 +100,10 @@ export default function WidgetBuilderProvider(props: any) {
 
         console.log('Current View we are moving away from visited: ', widgetHistory.currentView)
         if (widgetHistory.currentView !== undefined && widgetHistory.currentView !== null) {
-            // We need to set the _remove attribut on the object before it goes to the 
+            // We need to set the _remove attribut on the object before it goes to the
             // the view window
-            const v: any = { ...widgetHistory.currentView.view, _remove: true}
-            
+            const v: any = { ...widgetHistory.currentView.view, _remove: true }
+
             nextView(v)
             setParams(widgetHistory.currentView?.params)
         } else {

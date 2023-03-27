@@ -36,7 +36,6 @@ export interface IWidgetBuilderRoute {
      * Private objects
      */
     _remove?: boolean
-
 }
 
 /**
@@ -100,7 +99,6 @@ export interface WidgetBuilderContextInterface {
     params: any
     setFragmentHeader: (e: string | ReactNode) => void
 }
-
 
 export interface IHistoryInterface {
     view: IWidgetBuilderRoute | null

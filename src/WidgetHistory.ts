@@ -1,6 +1,5 @@
 import { IHistoryInterface } from './WidgetBuilder.interface'
 
-
 export class WidgetHistory {
     private _history: IHistoryInterface[] = []
 
