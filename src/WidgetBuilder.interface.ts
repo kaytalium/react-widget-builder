@@ -29,7 +29,7 @@ export interface IWidgetBuilderRoute {
      */
     transition?: boolean
     /**
-     * If using a fragment you can set the order of the fragment to show based your fragment flow
+     * If using a fragment you can set the order of the fragment to show based on your fragment flow
      */
     order?: number
 }

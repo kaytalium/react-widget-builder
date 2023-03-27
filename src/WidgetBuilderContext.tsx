@@ -95,8 +95,8 @@ export default function WidgetBuilderProvider(props: any) {
     }, [nav])
 
     const goBack = () => {
-        console.log('history: ', history)
-        // console.log('Widget history: ', widgetHistory.lastView)
+        // console.log('history: ', history)
+        console.log('Widget history: ', widgetHistory)
 
         console.log('Last View we visited: ', widgetHistory.lastView)
         if (widgetHistory.lastView !== undefined && widgetHistory.lastView !== null) {

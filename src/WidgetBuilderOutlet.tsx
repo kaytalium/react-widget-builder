@@ -1,4 +1,6 @@
+import { Box } from '@mui/material'
 import React, { ReactNode, useContext, useEffect, useState } from 'react'
+import { v4 } from 'uuid'
 import useWidgetBuilderNavigation from './useWidgetBuilderNavigation'
 import { WidgetBuilderOutletIProps } from './WidgetBuilder.interface'
 import WidgetBuilderProvider, { WidgetBuilderContext } from './WidgetBuilderContext'
@@ -35,12 +37,15 @@ const Component: React.FC<WidgetBuilderOutletIProps> = ({ builder, onNavigate })
          * fragments by the order in which they come
          */
         if (builder.type === 'fragment') {
-            setElement([
-                ...element.map((el) => {
-                    return el
-                }),
-                context.view
-            ])
+
+            if(context.view !== null){
+                setElement([
+                    ...element.map((el) => {
+                        return el
+                    }),
+                    context.view
+                ])
+            }
         }
 
         /**
@@ -52,10 +57,10 @@ const Component: React.FC<WidgetBuilderOutletIProps> = ({ builder, onNavigate })
     }, [context])
 
     return (
-        <>
+        <Box key={v4()}>
             {element.map((view) => {
                 return view
             })}
-        </>
+        </Box>
     )
 }
