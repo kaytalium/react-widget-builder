@@ -44,10 +44,10 @@ const Component: React.FC<WidgetBuilderOutletIProps> = ({ builder, onNavigate })
             if (context.view !== null) {
                 const arr = element
                 if (context.view._remove) {
-                    const i = element.findIndex((e) => (e.path === context.view?.path))
+                    const i = element.findIndex((e) => e.path === context.view?.path)
 
                     if (i > -1) {
-                        arr.splice(i, 0)
+                        arr.splice(i, 1)
                     }
 
                     setElement([
