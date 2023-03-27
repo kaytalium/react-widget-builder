@@ -1,7 +1,7 @@
 import { Box, styled } from '@mui/material'
 import React, { ReactNode, useContext, useEffect, useState } from 'react'
 import useWidgetBuilderNavigation from './useWidgetBuilderNavigation'
-import { WidgetBuilderOutletIProps } from './WidgetBuilder.interface'
+import { IWidgetBuilderRoute, WidgetBuilderOutletIProps } from './WidgetBuilder.interface'
 import WidgetBuilderProvider, { WidgetBuilderContext } from './WidgetBuilderContext'
 
 const Wrapper = styled(Box, { name: 'Outlet_wrapper' })<{ name: string | undefined | null }>(({ name }) => ({
@@ -21,7 +21,7 @@ export const WidgetBuilderOutlet = (props: WidgetBuilderOutletIProps) => {
 const Component: React.FC<WidgetBuilderOutletIProps> = ({ builder, onNavigate }) => {
     const context = useContext(WidgetBuilderContext)
     const { navigate } = useWidgetBuilderNavigation()
-    const [element, setElement] = useState<ReactNode[]>([])
+    const [element, setElement] = useState<IWidgetBuilderRoute[]>([])
 
     useEffect(() => {
         context.Builder(builder)
@@ -42,7 +42,7 @@ const Component: React.FC<WidgetBuilderOutletIProps> = ({ builder, onNavigate })
         if (builder.type === 'fragment') {
             if (context.view !== null) {
                 setElement([
-                    ...element.map((el) => {
+                    ...element.map((el: IWidgetBuilderRoute) => {
                         return el
                     }),
                     context.view
@@ -54,14 +54,14 @@ const Component: React.FC<WidgetBuilderOutletIProps> = ({ builder, onNavigate })
          * However if regular then we want to only show a singular view
          */
         if (builder.type === 'window') {
-            setElement([context.view])
+            if(context.view !== null) setElement([context.view])
         }
     }, [context.view])
 
     return (
         <Wrapper name={builder.name}>
             {element.map((view) => {
-                return view
+                return !view._remove ? view.window : null                
             })}
         </Wrapper>
     )

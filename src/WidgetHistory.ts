@@ -1,9 +1,6 @@
-import { IWidgetBuilderRoute } from './WidgetBuilder.interface'
+import { IHistoryInterface } from './WidgetBuilder.interface'
 
-export interface IHistoryInterface {
-    view: IWidgetBuilderRoute | null
-    params?: any
-}
+
 export class WidgetHistory {
     private _history: IHistoryInterface[] = []
 
@@ -11,7 +8,7 @@ export class WidgetHistory {
         this._history.push(item)
     }
 
-    get lastView(): IHistoryInterface | undefined {
+    get currentView(): IHistoryInterface | undefined {
         return this._history.pop()
     }
 }

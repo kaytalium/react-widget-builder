@@ -25,6 +25,7 @@ export class WidgetBuilder {
             if (this._type === 'fragment') {
                 this._assignWrapper((route, index) => {
                     const order = route.order ?? index
+                    route._remove = false
                     route.window = (
                         <FragmentFrame key={v4()} order={order}>
                             {route.window}
@@ -40,6 +41,7 @@ export class WidgetBuilder {
              */
             if (this._type === 'window') {
                 this._assignWrapper((route) => {
+                    route._remove = false
                     route.window = <WindowFrame key={v4()}>{route.window}</WindowFrame>
                     return route
                 })

@@ -7,7 +7,7 @@ export const WidgetBuilderContext = createContext<WidgetBuilderContextInterface>
     nextView: (e: any) => {
         console.log(e)
     },
-    view: <></>,
+    view: null,
     nextNav: (e: any) => {
         console.log(e)
     },
@@ -45,7 +45,7 @@ export default function WidgetBuilderProvider(props: any) {
             if (myBuilder.route.length > 0) {
                 // console.log("myBuilder.route.length>>>>>", myBuilder.route.length);
                 return {
-                    nextView: myBuilder.activeDefaultView()?.window,
+                    nextView: myBuilder.activeDefaultView(),
                     view: myBuilder.activeDefaultView()
                 }
                 // nextView()
@@ -64,7 +64,7 @@ export default function WidgetBuilderProvider(props: any) {
             const defaultValues = setDefault()
             // console.log('Data from seDefault view ', defaultValues)
             if (view === null && defaultValues.view !== null) {
-                nextView(defaultValues.nextView)
+                nextView(defaultValues.view)
                 widgetHistory.add({ view: defaultValues.view })
             }
         }
@@ -84,7 +84,7 @@ export default function WidgetBuilderProvider(props: any) {
             if (w === null) {
                 nextView(null)
             } else {
-                nextView(w?.window)
+                nextView(w)
                 setParams(nav?.params)
                 widgetHistory.add({
                     view: w,
@@ -98,10 +98,14 @@ export default function WidgetBuilderProvider(props: any) {
         // console.log('history: ', history)
         console.log('Widget history: ', widgetHistory)
 
-        console.log('Last View we visited: ', widgetHistory.lastView)
-        if (widgetHistory.lastView !== undefined && widgetHistory.lastView !== null) {
-            nextView(widgetHistory.lastView?.view?.window)
-            setParams(widgetHistory.lastView?.params)
+        console.log('Current View we are moving away from visited: ', widgetHistory.currentView)
+        if (widgetHistory.currentView !== undefined && widgetHistory.currentView !== null) {
+            // We need to set the _remove attribut on the object before it goes to the 
+            // the view window
+            const v: any = { ...widgetHistory.currentView.view, _remove: true}
+            
+            nextView(v)
+            setParams(widgetHistory.currentView?.params)
         } else {
             nextView(null)
         }

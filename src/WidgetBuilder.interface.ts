@@ -32,6 +32,11 @@ export interface IWidgetBuilderRoute {
      * If using a fragment you can set the order of the fragment to show based on your fragment flow
      */
     order?: number
+    /**
+     * Private objects
+     */
+    _remove?: boolean
+
 }
 
 /**
@@ -86,12 +91,18 @@ export interface WindowFrameIProps {
 }
 
 export interface WidgetBuilderContextInterface {
-    nextView: (e: any) => void
-    view: ReactNode
+    nextView: (e: IWidgetBuilderRoute) => void
+    view: IWidgetBuilderRoute | null
     nextNav: (e: any) => void
     Builder: (e: any) => void
     goBack: () => void
     fragmentHeader: string | ReactNode
     params: any
     setFragmentHeader: (e: string | ReactNode) => void
+}
+
+
+export interface IHistoryInterface {
+    view: IWidgetBuilderRoute | null
+    params?: any
 }
