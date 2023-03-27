@@ -1,11 +1,7 @@
 import React, { createContext, useCallback, useContext, useEffect, useMemo, useState } from 'react'
 import { WidgetBuilder } from './Builder'
 import { WidgetHistory } from './WidgetHistory'
-import {
-    IWidgetBuilderNavigate,
-    IWidgetBuilderRoute,
-    WidgetBuilderContextInterface
-} from './WidgetBuilder.interface'
+import { IWidgetBuilderNavigate, IWidgetBuilderRoute, WidgetBuilderContextInterface } from './WidgetBuilder.interface'
 
 export const WidgetBuilderContext = createContext<WidgetBuilderContextInterface>({
     nextView: (e: any) => {
@@ -34,7 +30,6 @@ export default function WidgetBuilderProvider(props: any) {
     const [myBuilder, Builder] = useState<WidgetBuilder | null>(null)
     const [params, setParams] = useState()
     const { children } = props
-    
 
     const widgetHistory = useMemo(() => new WidgetHistory(), [])
 
@@ -114,9 +109,7 @@ export default function WidgetBuilderProvider(props: any) {
     }
 
     return (
-        <WidgetBuilderContext.Provider
-            value={{ nextView, view, Builder, nextNav, params, goBack }}
-        >
+        <WidgetBuilderContext.Provider value={{ nextView, view, Builder, nextNav, params, goBack }}>
             {children}
         </WidgetBuilderContext.Provider>
     )

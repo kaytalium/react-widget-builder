@@ -72,7 +72,6 @@ export interface WidgetBuilderArgs {
      * this option allow the user to use the hash from the current url
      */
     urlHash?: boolean
-
 }
 
 export interface IWidgetBuilderNavigate {
