@@ -40,7 +40,7 @@ const Component: React.FC<WidgetBuilderOutletIProps> = ({ builder, onNavigate })
          * fragments by the order in which they come
          */
         if (builder.type === 'fragment') {
-            console.log("Fragment to be removed from view: ", context.view)
+            console.log('Fragment to be removed from view: ', context.view)
             if (context.view !== null) {
                 setElement([
                     ...element.map((el: IWidgetBuilderRoute) => {

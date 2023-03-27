@@ -1,7 +1,12 @@
 import React, { createContext, ReactNode, useCallback, useContext, useEffect, useMemo, useState } from 'react'
 import { WidgetBuilder } from './Builder'
 import { WidgetHistory } from './WidgetHistory'
-import { IWidgetBuilderNavigate, IWidgetBuilderRoute, WidgetBuilderContextInterface } from './WidgetBuilder.interface'
+import {
+    IFragmentHeader,
+    IWidgetBuilderNavigate,
+    IWidgetBuilderRoute,
+    WidgetBuilderContextInterface
+} from './WidgetBuilder.interface'
 
 export const WidgetBuilderContext = createContext<WidgetBuilderContextInterface>({
     nextView: (e: any) => {
@@ -19,7 +24,7 @@ export const WidgetBuilderContext = createContext<WidgetBuilderContextInterface>
         console.log('goback init')
     },
     fragmentHeader: '',
-    setFragmentHeader: (e: string | ReactNode) => {
+    setFragmentHeader: (e: IFragmentHeader | string | ReactNode) => {
         console.log(e)
     }
 })
@@ -34,7 +39,7 @@ export default function WidgetBuilderProvider(props: any) {
     const [myBuilder, Builder] = useState<WidgetBuilder | null>(null)
     const [params, setParams] = useState()
     const { children } = props
-    const [fragmentHeader, setFragmentHeader] = useState<string | ReactNode>()
+    const [fragmentHeader, setFragmentHeader] = useState<IFragmentHeader | string | ReactNode>('')
 
     const widgetHistory = useMemo(() => new WidgetHistory(), [])
 

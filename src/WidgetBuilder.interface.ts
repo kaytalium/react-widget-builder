@@ -95,12 +95,17 @@ export interface WidgetBuilderContextInterface {
     nextNav: (e: any) => void
     Builder: (e: any) => void
     goBack: () => void
-    fragmentHeader: string | ReactNode
+    fragmentHeader: IFragmentHeader | string | ReactNode
     params: any
-    setFragmentHeader: (e: string | ReactNode) => void
+    setFragmentHeader: (e: IFragmentHeader | string | ReactNode) => void
 }
 
 export interface IHistoryInterface {
     view: IWidgetBuilderRoute | null
     params?: any
+}
+
+export interface IFragmentHeader {
+    title?: string | ReactNode
+    showBack?: boolean
 }
