@@ -48,7 +48,10 @@ const Component: React.FC<WidgetBuilderOutletIProps> = ({ builder, onNavigate })
                     }),
                     context.view
                 ])
+            }else{
+                setElement([])
             }
+            
         }
 
         /**
@@ -56,6 +59,7 @@ const Component: React.FC<WidgetBuilderOutletIProps> = ({ builder, onNavigate })
          */
         if (builder.type === 'window') {
             if (context.view !== null) setElement([context.view])
+            else setElement([])
         }
     }, [context.view])
 
