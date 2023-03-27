@@ -1,15 +1,9 @@
 import React from 'react'
 import { v4 } from 'uuid'
-import FragmentFrame from './FragmentFrame'
-import { IWidgetBuilderNavigate, IWidgetBuilderRoute } from './WidgetBuilder.interface'
+import FragmentFrame from './frames/FragmentFrame'
+import WindowFrame from './frames/WindowFrame'
+import { IWidgetBuilderNavigate, IWidgetBuilderRoute, WidgetBuilderArgs, WindowType } from './WidgetBuilder.interface'
 
-type WindowType = 'window' | 'fragment' | 'panel' | 'section'
-interface WidgetBuilderArgs {
-    name?: string
-    routes: IWidgetBuilderRoute[]
-    type?: WindowType
-    urlHash?: boolean
-}
 export class WidgetBuilder {
     private _routes: IWidgetBuilderRoute[] = []
     private _name: string | null
@@ -29,7 +23,7 @@ export class WidgetBuilder {
              */
 
             if (this._type === 'fragment') {
-                this._routes = this._routes.map((route, index) => {
+                this._assignWrapper((route, index) => {
                     const order = route.order ?? index
                     route.window = (
                         <FragmentFrame key={v4()} order={order}>
@@ -39,8 +33,34 @@ export class WidgetBuilder {
                     return route
                 })
             }
+
+            /**
+             * if the type is window then we add all view a window frame
+             *
+             */
+            if (this._type === 'window') {
+                this._assignWrapper((route) => {
+                    route.window = <WindowFrame key={v4()}>{route.window}</WindowFrame>
+                    return route
+                })
+            }
         }
     }
+
+    /**
+     * Private functions
+     */
+    private _assignWrapper(callback: (route: IWidgetBuilderRoute, index?: number) => IWidgetBuilderRoute) {
+        this._routes = this._routes.map((route, index) => {
+            return callback(route, index)
+        })
+    }
+
+    //
+
+    /**
+     * Getters & Setters
+     */
     get view() {
         return this._routes[0].window
     }

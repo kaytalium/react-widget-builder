@@ -34,6 +34,38 @@ export interface IWidgetBuilderRoute {
     order?: number
 }
 
+/**
+ * The window type list the different types of window the builder will handle for you
+ *
+ * @description window - main
+ * @description fragment - stack view
+ * @description panel - partial view
+ * @description section - this is a child of all the other 3 options
+ */
+export type WindowType = 'window' | 'fragment' | 'panel' | 'section'
+
+export interface WidgetBuilderArgs {
+    /**
+     * Give the builder a name to easily find the outlet in the dom
+     */
+    name?: string
+    /**
+     * List of routes and their property settings
+     */
+    routes: IWidgetBuilderRoute[]
+    /**
+     * The builder manage different types of view container that have different behaviour
+     * @default window
+     * @description window this is the base type that is a master view that only show one view at a time
+     * @description fragment - This is the stack view that allow the user to stack view on top of each other
+     */
+    type?: WindowType
+    /**
+     * this option allow the user to use the hash from the current url
+     */
+    urlHash?: boolean
+}
+
 export interface IWidgetBuilderNavigate {
     path: string
     params?: any
@@ -47,6 +79,10 @@ export interface WidgetBuilderOutletIProps {
 export interface FragmentFrameIProps {
     children: any
     order?: number
+}
+
+export interface WindowFrameIProps {
+    children: any
 }
 
 export interface WidgetBuilderContextInterface {

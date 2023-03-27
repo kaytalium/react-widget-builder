@@ -1,15 +1,18 @@
-import { Box } from '@mui/material'
+import { Box, styled } from '@mui/material'
 import React, { ReactNode, useContext, useEffect, useState } from 'react'
-import { v4 } from 'uuid'
 import useWidgetBuilderNavigation from './useWidgetBuilderNavigation'
 import { WidgetBuilderOutletIProps } from './WidgetBuilder.interface'
 import WidgetBuilderProvider, { WidgetBuilderContext } from './WidgetBuilderContext'
+
+const Wrapper = styled(Box, { name: 'Outlet_wrapper' })<{ name: string | undefined | null }>(({ name }) => ({
+    name: name
+}))
 
 export const WidgetBuilderOutlet = (props: WidgetBuilderOutletIProps) => {
     const { builder, onNavigate } = props
 
     return (
-        <WidgetBuilderProvider>
+        <WidgetBuilderProvider className='WidgetBuilderProvider-wrapper'>
             <Component builder={builder} onNavigate={onNavigate} />
         </WidgetBuilderProvider>
     )
@@ -37,8 +40,7 @@ const Component: React.FC<WidgetBuilderOutletIProps> = ({ builder, onNavigate })
          * fragments by the order in which they come
          */
         if (builder.type === 'fragment') {
-
-            if(context.view !== null){
+            if (context.view !== null) {
                 setElement([
                     ...element.map((el) => {
                         return el
@@ -54,13 +56,13 @@ const Component: React.FC<WidgetBuilderOutletIProps> = ({ builder, onNavigate })
         if (builder.type === 'window') {
             setElement([context.view])
         }
-    }, [context])
+    }, [context.view])
 
     return (
-        <Box key={v4()}>
+        <Wrapper name={builder.name}>
             {element.map((view) => {
                 return view
             })}
-        </Box>
+        </Wrapper>
     )
 }

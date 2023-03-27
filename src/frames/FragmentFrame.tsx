@@ -1,10 +1,10 @@
 import { Box, IconButton, styled } from '@mui/material'
 import { motion } from 'framer-motion'
 import React, { useContext } from 'react'
-import useWidgetBuilderNavigation from './useWidgetBuilderNavigation'
-import { FragmentFrameIProps } from './WidgetBuilder.interface'
+import useWidgetBuilderNavigation from '../useWidgetBuilderNavigation'
+import { FragmentFrameIProps } from '../WidgetBuilder.interface'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack'
-import { WidgetBuilderContext } from './WidgetBuilderContext'
+import { WidgetBuilderContext } from '../WidgetBuilderContext'
 
 /**
  * Fragment Frame component Wrapper
