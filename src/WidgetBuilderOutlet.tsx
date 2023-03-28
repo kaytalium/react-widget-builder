@@ -76,16 +76,18 @@ const Component: React.FC<WidgetBuilderOutletIProps> = ({ builder, onNavigate })
         }
     }, [context.view])
 
-    if(builder.type === 'fragment'){
-        let dv = document.createElement('div')
+    if (builder.type === 'fragment') {
+        const dv = document.createElement('div')
         dv.setAttribute('id', 'widget-builder-fragment')
         document.body.appendChild(dv)
-        return ReactDOM.createPortal( <Wrapper name={builder.name}>
-            {element.map((view) => {
-                return !view._remove ? view.window : null
-            })}
-        </Wrapper>,
-        document.getElementById('widget-builder-fragment') as HTMLElement)
+        return ReactDOM.createPortal(
+            <Wrapper name={builder.name}>
+                {element.map((view) => {
+                    return !view._remove ? view.window : null
+                })}
+            </Wrapper>,
+            document.getElementById('widget-builder-fragment') as HTMLElement
+        )
     }
 
     return (
