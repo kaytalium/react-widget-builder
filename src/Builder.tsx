@@ -38,7 +38,7 @@ export class WidgetBuilder {
                         isBackNav: isBackIcon
                     }
 
-                    console.log("FHO >>>>>>>> ",fho," >>>>>>>>> FHO")
+                    console.log('FHO >>>>>>>> ', fho, ' >>>>>>>>> FHO')
                     route.window = (
                         <FragmentFrame key={v4()} order={order} {...fho}>
                             {route.window}

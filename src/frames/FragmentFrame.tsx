@@ -1,6 +1,6 @@
 import { Box, IconButton, styled } from '@mui/material'
 import { motion } from 'framer-motion'
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import useWidgetBuilderNavigation from '../useWidgetBuilderNavigation'
 import { FragmentFrameIProps } from '../WidgetBuilder.interface'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack'
@@ -20,7 +20,7 @@ const FragmentWrapper = styled(Box, { name: 'Fragment_Wrapper' })<{ order: numbe
     overflow: 'hidden'
 }))
 
-const FragmentTitle = styled(Box, { name: 'Fragment_Header' })({
+const FragmentTitle = styled(Box, { name: 'Fragment_Title' })({
     padding: '0 16px',
     fontSize: '11pt',
     display: 'flex',
@@ -30,7 +30,8 @@ const FragmentTitle = styled(Box, { name: 'Fragment_Header' })({
 const FragmentHeader = styled(Box, { name: 'Fragment_Header' })({
     padding: '8px 16px',
     display: 'flex',
-    flexDirection: 'row'
+    flexDirection: 'row',
+    height: "1.2em"
 })
 const FragmentBody = styled(Box, { name: 'Fragment_Body' })({
     padding: '8px 16px',
@@ -41,7 +42,7 @@ const FragmentBody = styled(Box, { name: 'Fragment_Body' })({
 
 const FragmentFrame: React.FC<FragmentFrameIProps> = ({ children, order, header, isBackNav }) => {
     const { navigateBack } = useWidgetBuilderNavigation()
-    
+
     return (
         <FragmentWrapper order={order}>
             <motion.div
@@ -55,11 +56,13 @@ const FragmentFrame: React.FC<FragmentFrameIProps> = ({ children, order, header,
                 }}
             >
                 <FragmentHeader>
-                    {isBackNav ? (
-                        <IconButton aria-label='edit' size='small' onClick={navigateBack}>
-                            <ArrowBackIcon fontSize='inherit' />
-                        </IconButton>
-                    ) : null}
+                    <Box sx={{width: "1.1em", height: "1.1em"}}>
+                        {isBackNav ? (
+                            <IconButton aria-label='edit' size='small' onClick={navigateBack}>
+                                <ArrowBackIcon fontSize='inherit' />
+                            </IconButton>
+                        ) : null}
+                    </Box>
 
                     <FragmentTitle>{header}</FragmentTitle>
                 </FragmentHeader>
