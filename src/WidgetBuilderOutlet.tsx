@@ -28,7 +28,6 @@ const Component: React.FC<WidgetBuilderOutletIProps> = ({ builder, onNavigate })
     }, [builder])
 
     useEffect(() => {
-        // console.log('onNavigate object called', onNavigate)
         if (onNavigate !== undefined) {
             navigate(onNavigate)
         }
@@ -40,7 +39,6 @@ const Component: React.FC<WidgetBuilderOutletIProps> = ({ builder, onNavigate })
          * fragments by the order in which they come
          */
         if (builder.type === 'fragment') {
-            console.log('Fragment to be removed from view: ', context.view)
             if (context.view !== null) {
                 const arr = element
                 if (context.view._remove) {

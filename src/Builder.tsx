@@ -37,8 +37,6 @@ export class WidgetBuilder {
                         ...route.fragmentHeaderOptions,
                         isBackNav: isBackIcon
                     }
-
-                    console.log('FHO >>>>>>>> ', fho, ' >>>>>>>>> FHO')
                     route.window = (
                         <FragmentFrame key={v4()} order={order} {...fho}>
                             {route.window}

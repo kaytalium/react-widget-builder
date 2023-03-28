@@ -31,7 +31,15 @@ const FragmentHeader = styled(Box, { name: 'Fragment_Header' })({
     padding: '8px 16px',
     display: 'flex',
     flexDirection: 'row',
-    height: "1.2em"
+    height: '1.7em'
+})
+
+const FragmentHeaderBackNav = styled(Box, { name: 'Fragment_Back_Nav' })({
+    width: "1.6em",
+    height: '1.6em',
+    display: 'flex',
+    alignItems: "center",
+    justifyContent: "center"
 })
 const FragmentBody = styled(Box, { name: 'Fragment_Body' })({
     padding: '8px 16px',
@@ -56,13 +64,13 @@ const FragmentFrame: React.FC<FragmentFrameIProps> = ({ children, order, header,
                 }}
             >
                 <FragmentHeader>
-                    <Box sx={{width: "1.1em", height: "1.1em"}}>
+                    <FragmentHeaderBackNav>
                         {isBackNav ? (
                             <IconButton aria-label='edit' size='small' onClick={navigateBack}>
                                 <ArrowBackIcon fontSize='inherit' />
                             </IconButton>
                         ) : null}
-                    </Box>
+                    </FragmentHeaderBackNav>
 
                     <FragmentTitle>{header}</FragmentTitle>
                 </FragmentHeader>
