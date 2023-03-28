@@ -1,5 +1,6 @@
 import { Box, styled } from '@mui/material'
 import React, { useContext, useEffect, useState } from 'react'
+import ReactDOM from 'react-dom'
 import useWidgetBuilderNavigation from './useWidgetBuilderNavigation'
 import { IWidgetBuilderRoute, WidgetBuilderOutletIProps } from './WidgetBuilder.interface'
 import WidgetBuilderProvider, { WidgetBuilderContext } from './WidgetBuilderContext'
@@ -74,6 +75,18 @@ const Component: React.FC<WidgetBuilderOutletIProps> = ({ builder, onNavigate })
             else setElement([])
         }
     }, [context.view])
+
+    if(builder.type === 'fragment'){
+        let dv = document.createElement('div')
+        dv.setAttribute('id', 'widget-builder-fragment')
+        document.body.appendChild(dv)
+        return ReactDOM.createPortal( <Wrapper name={builder.name}>
+            {element.map((view) => {
+                return !view._remove ? view.window : null
+            })}
+        </Wrapper>,
+        document.getElementById('widget-builder-fragment') as HTMLElement)
+    }
 
     return (
         <Wrapper name={builder.name}>
