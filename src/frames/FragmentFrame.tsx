@@ -35,11 +35,11 @@ const FragmentHeader = styled(Box, { name: 'Fragment_Header' })({
 })
 
 const FragmentHeaderBackNav = styled(Box, { name: 'Fragment_Back_Nav' })({
-    width: "1.6em",
+    width: '1.6em',
     height: '1.6em',
     display: 'flex',
-    alignItems: "center",
-    justifyContent: "center"
+    alignItems: 'center',
+    justifyContent: 'center'
 })
 const FragmentBody = styled(Box, { name: 'Fragment_Body' })({
     padding: '8px 16px',

@@ -90,9 +90,8 @@ export default function WidgetBuilderProvider(props: any) {
     }, [nav])
 
     const goBack = () => {
-        
         const currentView = widgetHistory.currentView
-        
+
         if (currentView !== undefined && currentView !== null) {
             // We need to set the _remove attribut on the object before it goes to the
             // the view window

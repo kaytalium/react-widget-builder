@@ -3,7 +3,6 @@ import { IWidgetBuilderNavigate } from './WidgetBuilder.interface'
 import { WidgetBuilderContext } from './WidgetBuilderContext'
 
 export default function useWidgetBuilderNavigation() {
-    
     const context = useContext(WidgetBuilderContext)
 
     const navigate = (e: IWidgetBuilderNavigate) => {
