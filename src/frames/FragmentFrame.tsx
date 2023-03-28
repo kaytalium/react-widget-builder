@@ -41,12 +41,7 @@ const FragmentBody = styled(Box, { name: 'Fragment_Body' })({
 
 const FragmentFrame: React.FC<FragmentFrameIProps> = ({ children, order, header, isBackNav }) => {
     const { navigateBack } = useWidgetBuilderNavigation()
-    const [isBackNavOn, setIsBackNavOn] = useState<boolean>(true)
-
-    useEffect(() => {
-        setIsBackNavOn(isBackNav === undefined ? true : isBackNav)
-    }, [isBackNav])
-
+    
     return (
         <FragmentWrapper order={order}>
             <motion.div
@@ -60,14 +55,11 @@ const FragmentFrame: React.FC<FragmentFrameIProps> = ({ children, order, header,
                 }}
             >
                 <FragmentHeader>
-                    {
-                        isBackNavOn ? <IconButton aria-label='edit' size='small' onClick={navigateBack}>
+                    {isBackNav ? (
+                        <IconButton aria-label='edit' size='small' onClick={navigateBack}>
                             <ArrowBackIcon fontSize='inherit' />
-                        </IconButton> : null
-
-
-                    }
-
+                        </IconButton>
+                    ) : null}
 
                     <FragmentTitle>{header}</FragmentTitle>
                 </FragmentHeader>

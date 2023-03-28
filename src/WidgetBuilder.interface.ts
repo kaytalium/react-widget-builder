@@ -113,10 +113,10 @@ export interface IFragmentHeaderOptions {
     /**
      * The string or react node that is your header.
      */
-    header?: string | ReactNode;
+    header?: string | ReactNode
     /**
      * Turn on the back arrow navigation on your fragment window
      * @default true
      */
-    isBackNav?: boolean;
+    isBackNav?: boolean
 }

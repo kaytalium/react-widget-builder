@@ -26,8 +26,21 @@ export class WidgetBuilder {
                 this._assignWrapper((route, index) => {
                     const order = route.order ?? index
                     route._remove = false
+
+                    /**
+                     * Frament Header Options
+                     */
+                    const fhoIBN = route.fragmentHeaderOptions?.isBackNav
+
+                    const isBackIcon = fhoIBN === undefined ? true : fhoIBN
+                    const fho = {
+                        ...route.fragmentHeaderOptions,
+                        isBackNav: isBackIcon
+                    }
+
+                    console.log("FHO >>>>>>>> ",fho," >>>>>>>>> FHO")
                     route.window = (
-                        <FragmentFrame key={v4()} order={order} {...route.fragmentHeaderOptions}>
+                        <FragmentFrame key={v4()} order={order} {...fho}>
                             {route.window}
                         </FragmentFrame>
                     )
