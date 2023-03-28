@@ -55,11 +55,10 @@ const FragmentFrame: React.FC<FragmentFrameIProps> = ({ children, order, header,
                 }}
             >
                 <FragmentHeader>
-                    {!isBackNav ? null : (
+                    {isBackNav}
                         <IconButton aria-label='edit' size='small' onClick={navigateBack}>
                             <ArrowBackIcon fontSize='inherit' />
                         </IconButton>
-                    )}
 
                     <FragmentTitle>{header}</FragmentTitle>
                 </FragmentHeader>
