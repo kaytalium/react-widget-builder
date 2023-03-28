@@ -110,6 +110,13 @@ export interface IHistoryInterface {
 }
 
 export interface IFragmentHeaderOptions {
-    header?: string | ReactNode
-    isBackNav?: boolean
+    /**
+     * The string or react node that is your header.
+     */
+    header?: string | ReactNode;
+    /**
+     * Turn on the back arrow navigation on your fragment window
+     * @default true
+     */
+    isBackNav?: boolean;
 }

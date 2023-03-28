@@ -1,6 +1,6 @@
 import { Box, IconButton, styled } from '@mui/material'
 import { motion } from 'framer-motion'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import useWidgetBuilderNavigation from '../useWidgetBuilderNavigation'
 import { FragmentFrameIProps } from '../WidgetBuilder.interface'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack'
@@ -41,6 +41,11 @@ const FragmentBody = styled(Box, { name: 'Fragment_Body' })({
 
 const FragmentFrame: React.FC<FragmentFrameIProps> = ({ children, order, header, isBackNav }) => {
     const { navigateBack } = useWidgetBuilderNavigation()
+    const [isBackNavOn, setIsBackNavOn] = useState<boolean>(true)
+
+    useEffect(() => {
+        setIsBackNavOn(isBackNav === undefined ? true : isBackNav)
+    }, [isBackNav])
 
     return (
         <FragmentWrapper order={order}>
@@ -55,10 +60,14 @@ const FragmentFrame: React.FC<FragmentFrameIProps> = ({ children, order, header,
                 }}
             >
                 <FragmentHeader>
-                    {isBackNav}
-                        <IconButton aria-label='edit' size='small' onClick={navigateBack}>
+                    {
+                        isBackNavOn ? <IconButton aria-label='edit' size='small' onClick={navigateBack}>
                             <ArrowBackIcon fontSize='inherit' />
-                        </IconButton>
+                        </IconButton> : null
+
+
+                    }
+
 
                     <FragmentTitle>{header}</FragmentTitle>
                 </FragmentHeader>
