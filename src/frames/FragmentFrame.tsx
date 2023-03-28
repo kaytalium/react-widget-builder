@@ -15,7 +15,7 @@ const FragmentWrapper = styled(Box, { name: 'Fragment_Wrapper' })<{ order: numbe
     left: 0,
     right: 0,
     bottom: 0,
-    zIndex: order !== undefined ? 1000 + order : '1000',
+    zIndex: order !== undefined ? 1100 + order : '1100',
     background: '#fff',
     overflow: 'hidden'
 }))
