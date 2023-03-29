@@ -76,10 +76,20 @@ const Component: React.FC<WidgetBuilderOutletIProps> = ({ builder, onNavigate })
         }
     }, [context.view])
 
+    /**
+     * The fragment type is like a dialog box that should be  accessed from any caller and render on top of the 
+     * whole document. 
+     * therefore we need to create a way to set the component of the outlet outside of the root div on the html page
+     */
     if (builder.type === 'fragment') {
-        const dv = document.createElement('div')
-        dv.setAttribute('id', 'widget-builder-fragment')
-        document.body.appendChild(dv)
+        // we are check to ensure that only one instance of the element is append to the dom 
+        if(document.getElementById('widget-builder-fragment') === null){
+            const dv = document.createElement('div')
+            dv.setAttribute('id', 'widget-builder-fragment')
+            document.body.appendChild(dv)
+        }
+
+        // Update the dom with new data
         return ReactDOM.createPortal(
             <Wrapper name={builder.name}>
                 {element.map((view) => {
